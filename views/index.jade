@@ -1,5 +1,31 @@
 extends layout/jumbotron
 
-
 append body
-	
+	.jumbotron
+		.container
+			h1 친구 추천 시스템
+			p
+				| 회원 가입을 하고 친구를 만들어 보세요.
+			p
+				a.btn.btn-primary.btn-lg(href='#', role='button') Learn more »
+	.container
+		.row
+			.col-md-4
+				h2 내 계정
+				p
+					| 계정 관리
+				p
+					a.btn.btn-default(href='#', role='button') View details »
+			.col-md-4
+				h2 친구
+				p
+					| 친구 관리
+				p
+					a.btn.btn-default(href='#', role='button') View details »
+			.col-md-4
+				h2 포스팅
+				p
+					| 포스팅 관리
+				p
+					a.btn.btn-default(href='#', role='button') View details »
+		
