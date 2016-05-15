@@ -9,7 +9,7 @@ var routes = require('./routes/index');
 var account = require('./routes/account');
 var friend = require('./routes/friend');
 var post = require('./routes/post');
-var imgSim = require('./routes/imgSim');
+var imgVision = require('./routes/imgVision');
 
 var app = express();
 
@@ -29,7 +29,7 @@ app.use('/', routes);
 app.use('/account', account);
 app.use('/friend', friend);
 app.use('/post', post);
-app.use('/imgSim', imgSim);
+app.use('/imgVision', imgVision);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
