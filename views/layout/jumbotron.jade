@@ -3,7 +3,7 @@ append styles
 	// Custom styles for this template
 	link(href='css/jumbotron.css', rel='stylesheet')
 block body
-	nav.navbar.navbar-inverse.navbar-fixed-top
+	nav.navbar.navbar-inverse.navbar-top
 		.container
 			.navbar-header
 				button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
@@ -21,12 +21,19 @@ block body
 					li
 						a(href='/post') 포스팅
 			#navbar.navbar-collapse.collapse
-				form.navbar-form.navbar-right
-					.form-group
-						input.form-control(type='text', placeholder='Email')
-					.form-group
-						input.form-control(type='password', placeholder='Password')
-					button.btn.btn-success(type='submit') Sign in
-
+				if(!user)
+					form.navbar-form.navbar-right(role='form' action='/login' method='post')
+						.form-group
+							input.form-control(type='text', name='username' placeholder='Email')
+						.form-group
+							input.form-control(type='password', name='password' placeholder='Password')
+						button.btn.btn-success(type='submit') Sign in
+						a.button.btn.btn-info(href='/register') Register
+				if(user)
+					form.navbar-form.navbar-right
+						.form-group
+							+label-primary(user.username)
+						.form-group
+							a(href='/logout') Logout
 block content
 	p myexpnfut@gmail.com

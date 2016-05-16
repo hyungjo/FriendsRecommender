@@ -1,4 +1,5 @@
 extends layout/jumbotron
 
 append body
-  h1 친구 관리 페이지
+  if(user)
+    h1 #{user.username}

@@ -1,15 +1,26 @@
+require('dotenv').config();
 var express = require('express');
+var expressSession = require('express-session');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var mongoose = require('mongoose');
+var flash = require('connect-flash');
+
+var Account = require('./models/account');
 
 var routes = require('./routes/index');
 var account = require('./routes/account');
 var friend = require('./routes/friend');
 var post = require('./routes/post');
 var imgVision = require('./routes/imgVision');
+var register = require('./routes/register');
+var login = require('./routes/login');
+var logout = require('./routes/logout');
 
 var app = express();
 
@@ -23,13 +34,32 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(require('express-session')({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(flash());
+app.use(passport.session());
+
+
+
 
 app.use('/', routes);
 app.use('/account', account);
 app.use('/friend', friend);
 app.use('/post', post);
 app.use('/imgVision', imgVision);
+app.use('/register', register);
+app.use('/login', login);
+app.use('/logout', logout);
+
+passport.use(new LocalStrategy(Account.authenticate()));
+passport.serializeUser(Account.serializeUser());
+passport.deserializeUser(Account.deserializeUser());
+
+mongoose.connect(process.env.dbUrl);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -4,7 +4,7 @@ var requtil = vision.requtil;
 
 var router = express.Router();
 
-var profile = './gProfile.json';
+var profile = './configs/gProfile.json';
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

@@ -3,7 +3,10 @@ extends layout/jumbotron
 append body
 	.jumbotron
 		.container
-			h1 친구 추천 시스템
+			if(user)
+				h1 #{user.username} 님 환영합니다.
+			if(!user)
+				h1 친구 추천 시스템
 			p
 				| 회원 가입을 하고 친구를 만들어 보세요.
 			p
