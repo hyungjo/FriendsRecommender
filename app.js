@@ -16,11 +16,9 @@ var Account = require('./models/account');
 var routes = require('./routes/index');
 var account = require('./routes/account');
 var friend = require('./routes/friend');
-var post = require('./routes/post');
 var imgVision = require('./routes/imgVision');
-var register = require('./routes/register');
-var login = require('./routes/login');
-var logout = require('./routes/logout');
+var authentication = require('./routes/authentication');
+var posting = require('./routes/posting');
 
 var app = express();
 
@@ -32,6 +30,7 @@ app.set('view engine', 'jade');
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
+app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(require('express-session')({
@@ -43,17 +42,12 @@ app.use(passport.initialize());
 app.use(flash());
 app.use(passport.session());
 
-
-
-
 app.use('/', routes);
 app.use('/account', account);
 app.use('/friend', friend);
-app.use('/post', post);
 app.use('/imgVision', imgVision);
-app.use('/register', register);
-app.use('/login', login);
-app.use('/logout', logout);
+app.use('/authentication', authentication);
+app.use('/posting', posting);
 
 passport.use(new LocalStrategy(Account.authenticate()));
 passport.serializeUser(Account.serializeUser());
