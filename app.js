@@ -1,4 +1,7 @@
+//Configuration Loading
 require('dotenv').config();
+
+//Import Packages
 var express = require('express');
 var expressSession = require('express-session');
 var path = require('path');
@@ -10,15 +13,20 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongoose = require('mongoose');
 var flash = require('connect-flash');
+var multer = require('multer');
 
+//Import Models
 var Account = require('./models/account');
 
+//Import Routers
+var authentication = require('./routes/authentication');
 var routes = require('./routes/index');
 var account = require('./routes/account');
 var friend = require('./routes/friend');
-var imgVision = require('./routes/imgVision');
-var authentication = require('./routes/authentication');
 var posting = require('./routes/posting');
+
+var imgVision = require('./routes/imgVision');
+
 
 var app = express();
 
@@ -41,6 +49,7 @@ app.use(require('express-session')({
 app.use(passport.initialize());
 app.use(flash());
 app.use(passport.session());
+//app.use(multer({dest: '/uploads/'}));
 
 app.use('/', routes);
 app.use('/account', account);

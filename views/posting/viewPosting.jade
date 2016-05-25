@@ -1,0 +1,9 @@
+extends ../layout/jumbotron
+
+append body
+  .container
+    +panel-primary("Primary Panel")
+      h2 !{posting.title}
+      h3 !{posting.description}
+      +img-responsive("/posting/img/" + posting.imgId, "!{posting.imgKeyword}")
+      +label-default("Default") +label-primary("Primary")

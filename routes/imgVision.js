@@ -8,7 +8,7 @@ var profile = './configs/gProfile.json';
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  var file = './uploads/car.jpeg';
+  var file = './uploads/car.png';
   var result;
 
   vision.init(profile);

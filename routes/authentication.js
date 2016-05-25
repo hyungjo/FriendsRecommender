@@ -32,7 +32,12 @@ router.get('/register', function(req, res) {
 });
 
 router.post('/register', function(req, res, next) {
-    Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
+    Account.register(new Account({
+      username : req.body.username,
+      email : req.body.email,
+      gender : req.body.gender,
+      address : req.body.address
+     }), req.body.password, function(err, account) {
         if (err) {
           return res.render('authentication/register', { error : err.message });
         }
