@@ -13,7 +13,6 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongoose = require('mongoose');
 var flash = require('connect-flash');
-var multer = require('multer');
 
 //Import Models
 var Account = require('./models/account');
@@ -24,9 +23,6 @@ var routes = require('./routes/index');
 var account = require('./routes/account');
 var friend = require('./routes/friend');
 var posting = require('./routes/posting');
-
-var imgVision = require('./routes/imgVision');
-
 
 var app = express();
 
@@ -49,12 +45,10 @@ app.use(require('express-session')({
 app.use(passport.initialize());
 app.use(flash());
 app.use(passport.session());
-//app.use(multer({dest: '/uploads/'}));
 
 app.use('/', routes);
 app.use('/account', account);
 app.use('/friend', friend);
-app.use('/imgVision', imgVision);
 app.use('/authentication', authentication);
 app.use('/posting', posting);
 

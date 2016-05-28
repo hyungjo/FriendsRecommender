@@ -1,9 +1,20 @@
 extends ../layout/jumbotron
 
 append body
-  .container
-    +panel-primary("Primary Panel")
-      h2 !{posting.title}
-      h3 !{posting.description}
-      +img-responsive("/posting/img/" + posting.imgId, "!{posting.imgKeyword}")
-      +label-default("Default") +label-primary("Primary")
+  .jumbotron
+    .container
+      p
+        +a-btn-success("/posting/upload") New Posting
+        +a-btn-success("/posting/user/" + user.username) My Postings
+      p
+        each posting in postings
+          +panel-primary(posting.title)
+            h3 !{posting.description}
+            +img-responsive("/posting/img/" + posting.imgId)
+            div user: 
+              +label-default(posting.username)
+            div at: 
+              +label-info(posting.postingDate)
+            div Keyworsd: 
+              each keyword in posting.imgKeyword
+                +label-primary(keyword)

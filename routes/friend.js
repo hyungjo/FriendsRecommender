@@ -4,7 +4,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', userAuth, function(req, res, next) {
-  res.render('imgVision', {user: req.user});
+  res.render('friend/friend', {user: req.user});
 });
 
 module.exports = router;
