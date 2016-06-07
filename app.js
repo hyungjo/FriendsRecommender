@@ -24,6 +24,8 @@ var account = require('./routes/account');
 var friend = require('./routes/friend');
 var posting = require('./routes/posting');
 
+var test = require('./routes/test');
+
 var app = express();
 
 // view engine setup
@@ -51,6 +53,8 @@ app.use('/account', account);
 app.use('/friend', friend);
 app.use('/authentication', authentication);
 app.use('/posting', posting);
+
+app.use('/test', test);
 
 passport.use(new LocalStrategy(Account.authenticate()));
 passport.serializeUser(Account.serializeUser());
